@@ -11,7 +11,11 @@ router.use(express.json());
 require('../auth');
 
 function isLoggedIn(req, res, next) {
-	req.user ? next() : res.sendStatus(401);
+	if (req.user) {
+		next();
+	} else {
+		res.sendStatus(401);
+	}
 }
 
 router.get(
@@ -32,7 +36,9 @@ router.get('/failure', (req, res) => {
 });
 
 router.get('/protected', isLoggedIn, (req, res) => {
-	res.send(`Hello User ${req.user.displayName}`);
+	res.send(
+		`Hello UserName: ${req.user.displayName} email:  ${req.user.email}`
+	);
 });
 
 router.get('/google/logout', (req, res, next) => {

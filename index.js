@@ -1,11 +1,15 @@
 const express = require('express');
+const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express();
+app.use(express.json());
 
 //Port Setting
 const PORT = process.env.PORT;
+
+//DataBase
+const db = require('./models');
 
 //API Test
 app.get('/', (req, res) => {
@@ -16,8 +20,11 @@ app.get('/', (req, res) => {
     `);
 });
 
+//Router
 const GoogleAuthRouter = require('./routes/GoogleAuth');
 app.use('/auth', GoogleAuthRouter);
 
 //Port
-app.listen(PORT, () => console.log(`API running PORT ${PORT}`));
+db.sequelize.sync().then(() => {
+	app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+});

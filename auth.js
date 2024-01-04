@@ -1,4 +1,5 @@
 const passport = require('passport');
+const Users = require('./models/Users');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 passport.use(
@@ -10,14 +11,31 @@ passport.use(
 			passReqToCallback: true,
 		},
 		function (request, accessToken, refreshToken, profile, done) {
-			return done(null, profile);
+			// console.log(profile);
+			// return done(null, profile);
 
-			// User.findOrCreate(
-			// 	{ googleId: profile.id },
-			// 	function (err, user) {
-			// 		return done(err, user);
-			// 	}
-			// );
+			Users.findOrCreate(
+				{
+					where: {
+						googleId: profile.id,
+						email: profile.email,
+						name: profile.displayName,
+						profileImg: profile.picture,
+					},
+				},
+				function (err, user) {
+					if (err) {
+						return done(err);
+					}
+					done(null, user);
+				}
+			)
+				.spread((user, created) => {
+					done(null, user);
+				})
+				.catch((err) => {
+					return done(new Error('Internal Server Error'));
+				});
 		}
 	)
 );
