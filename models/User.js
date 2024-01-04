@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		provider: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	});
 
 	return Users;

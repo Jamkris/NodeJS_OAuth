@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
 //Router
 const GoogleAuthRouter = require('./routes/GoogleAuth');
 app.use('/auth', GoogleAuthRouter);
+const Register = require('./routes/Users');
+app.use('/aauth', Register);
 
 //Port
 db.sequelize.sync().then(() => {
