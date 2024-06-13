@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
 	const Users = sequelize.define('Users', {
-		googleId: {
+		userId: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
@@ -11,6 +11,18 @@ module.exports = (sequelize, DataTypes) => {
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+		},
+		nickname: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		sex: {
+			type: DataTypes.STRING,
+			allowNull: true,
+		},
+		birthdate: {
+			type: DataTypes.STRING,
+			allowNull: true,
 		},
 		profileImg: {
 			type: DataTypes.STRING,

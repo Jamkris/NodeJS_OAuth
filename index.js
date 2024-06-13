@@ -17,14 +17,17 @@ app.get('/', (req, res) => {
         <h1>OAuth</h1>
         <a href="/auth/google">LogIn</a>
         <a href="/auth/google/logout">LogOut</a>
+
+        <br />
+
+        <a href="/auth/kakao">LogIn</a>
+        <a href="/auth/kakao/logout">LogOut</a>
     `);
 });
 
-//Router
-const GoogleAuthRouter = require('./routes/GoogleAuth');
-app.use('/auth', GoogleAuthRouter);
-const Register = require('./routes/Users');
-app.use('/aauth', Register);
+//API Router Call
+const ApiRouter = require('./routes/');
+app.use('/', ApiRouter);
 
 //Port
 db.sequelize.sync().then(() => {
