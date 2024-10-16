@@ -7,5 +7,7 @@ const GoogleRouter = require('./GoogleAuth');
 router.use('/', GoogleRouter);
 const KakaoRouter = require('./KakaoAuth');
 router.use('/', KakaoRouter);
+const GitHubRouter = require('./GitHubAuth');
+router.use('/', GitHubRouter);
 
 module.exports = router;
