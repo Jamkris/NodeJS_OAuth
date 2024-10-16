@@ -49,7 +49,7 @@ npm run start
 ```
 
 ## API 명세서
-
+```
 Google
 login : GET /auth/google
 callback : GET /auth/google/callback
@@ -70,3 +70,4 @@ callback : GET /auth/kakao/callback
 fail : GET /auth/kakao/fail
 authstate : GET /auth/kakao/authstate
 logout : GET /auth/kakao/logout
+```
